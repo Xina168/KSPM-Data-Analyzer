@@ -1,0 +1,6 @@
+{
+  "name": "Koh Santepheap Data Analyzer",
+  "description": "An interactive dashboard for Koh Santepheap to upload, analyze, and visualize data from Excel files. Configure charts, view key metrics, and export your findings.",
+  "requestFramePermissions": [],
+  "prompt": ""
+}
