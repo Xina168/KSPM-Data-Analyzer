@@ -91,13 +91,6 @@ const formatCurrency = (value: any) => {
     return `$${num.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
 }
 
-const getGrade = (rank: number) => {
-    if (rank <= 10) return { grade: 'A', color: 'bg-green-100 text-green-800' };
-    if (rank <= 20) return { grade: 'B', color: 'bg-yellow-100 text-yellow-800' };
-    if (rank <= 30) return { grade: 'C', color: 'bg-orange-100 text-orange-800' };
-    return { grade: 'D', color: 'bg-red-100 text-red-800' };
-};
-
 const TopItemsList: React.FC<TopItemsListProps> = ({ items, title, dataColumn }) => {
   const [expandedItems, setExpandedItems] = useState<Set<string>>(new Set());
 
@@ -129,19 +122,13 @@ const TopItemsList: React.FC<TopItemsListProps> = ({ items, title, dataColumn })
       <ul className="divide-y divide-gray-200">
         {items.map((item, index) => {
           const isExpanded = expandedItems.has(item.name);
-          const { grade, color } = getGrade(index + 1);
           return (
             <li key={item.name} className="py-4">
               <div className="flex items-start justify-between cursor-pointer" onClick={() => toggleExpand(item.name)}>
                 <div className="flex items-start gap-4">
                   <span className="flex-shrink-0 w-8 h-8 bg-blue-100 text-blue-600 font-bold rounded-full flex items-center justify-center text-sm">{index + 1}</span>
                   <div>
-                    <div className="flex items-center gap-2">
-                      <p className="font-semibold text-gray-900">{item.name}</p>
-                      <span className={`inline-block text-xs font-bold px-2 py-0.5 rounded-full ${color}`}>
-                        GRADE {grade}
-                      </span>
-                    </div>
+                    <p className="font-semibold text-gray-900">{item.name}</p>
                      {item.details.length > 1 && (
                         <span className="inline-block bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded-full mt-1">
                           {item.details.length} transactions
